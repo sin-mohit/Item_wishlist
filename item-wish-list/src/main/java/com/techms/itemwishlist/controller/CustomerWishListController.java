@@ -13,30 +13,29 @@ import com.techms.itemwishlist.model.CustomerWishList;
 import com.techms.itemwishlist.service.CustomerWishListService;
 
 @RestController
-@RequestMapping("/customerWishLists")
 public class CustomerWishListController {
 
 	@Autowired
 	private CustomerWishListService customerWishListService;
 
-	@RequestMapping("/getAll")
-	public List<CustomerWishList> getAllWishLists() {	
-		return customerWishListService.getAllWishLists();
-	}
+//	@RequestMapping("/customerWishLists")
+//	public List<CustomerWishList> getAllWishLists() {	
+//		return customerWishListService.getAllWishLists();
+//	}
 
-	@RequestMapping("/getOne")
-	public List<CustomerWishList> getWishList(@RequestParam(value="customerId") String customerId) {
+	@RequestMapping("/customerWishLists")
+	public List<CustomerWishList> getWishList(@RequestParam(value="customerId", required = true) String customerId) {
 		return customerWishListService.getWishList(customerId);
 	}
 
-	@RequestMapping(method=RequestMethod.POST, value="/add")
+	@RequestMapping(method=RequestMethod.POST, value="/customerWishLists")
 	public void addWishList(@RequestBody CustomerWishList customerWishList) {
 		customerWishListService.addWishList(customerWishList);
 	}
 
-	// this method is to delete the wish list
-	@RequestMapping(method=RequestMethod.DELETE, value="/delete")
-	public void deleteWishList(@RequestParam(value="itemName") String itemName, @RequestParam(value="customerId", required=false) String customerId) {
+	// This method is to delete the wish list
+	@RequestMapping(method=RequestMethod.DELETE, value="/customerWishLists")
+	public void deleteWishList(@RequestParam(value="itemName") String itemName, @RequestParam(value="customerId", required=true) String customerId) {
 		customerWishListService.deleteWishList(itemName, customerId); 
 	}
 
