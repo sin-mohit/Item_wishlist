@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +23,8 @@ public class CustomerWishListService {
 		return customeWishLists;
 	}
 	
-	public List<CustomerWishList> getWishList(String customerId) {
-		return customerWishListRepository.findByCustomerId(customerId);
+	public List<CustomerWishList> getWishList(String customerId, Pageable pageable) {
+		return customerWishListRepository.findByCustomerId(customerId, pageable);
 	}
 	
 	public void addWishList(CustomerWishList customerWishList) {
